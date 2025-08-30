@@ -24,11 +24,10 @@ async def main():
             await session.initialize()
             print("session initialized")
             tools = await load_mcp_tools(session)
-            print(tools)
 
             agent = create_react_agent(llm, tools)
 
-            response = agent.invoke({"messages": [HumanMessage(content="What is 10 + 20?")]})
+            response = await agent.ainvoke({"messages": [HumanMessage(content="What is 10 + 2 * 43?")]})
             print(response["messages"][-1].content)
             
 
